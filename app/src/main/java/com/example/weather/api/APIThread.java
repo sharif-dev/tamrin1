@@ -119,7 +119,7 @@ public class APIThread extends Thread {
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                processWeatherRes(result);
+                Weather.processWeatherRes(result);
             }
         }, url);
     }
