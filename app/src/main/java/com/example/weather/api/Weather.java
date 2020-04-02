@@ -23,7 +23,7 @@ public class Weather {
     private String precipIntensityMax;
     private String precipIntensityMaxTime;
     private String precipProbability;
-    private String precipType;
+//    private String precipType;
     private String temperatureHigh;
     private String temperatureHighTime;
     private String temperatureLow;
@@ -67,6 +67,7 @@ public class Weather {
 
             Weather weather = new Weather();
             weathers.add(weather);
+//            System.out.println("***************"+ dayWeather);
             weather.time = dayWeather.getAsJsonObject().get("time").toString();
             weather.summary = dayWeather.getAsJsonObject().get("summary").toString();
             weather.icon = dayWeather.getAsJsonObject().get("icon").toString();
@@ -77,7 +78,7 @@ public class Weather {
             weather.precipIntensityMax = dayWeather.getAsJsonObject().get("precipIntensityMax").toString();
             weather.precipIntensityMaxTime = dayWeather.getAsJsonObject().get("precipIntensityMaxTime").toString();
             weather.precipProbability = dayWeather.getAsJsonObject().get("precipProbability").toString();
-            weather.precipType = dayWeather.getAsJsonObject().get("precipType").toString();
+//            weather.precipType = dayWeather.getAsJsonObject().get("precipType").toString();
             weather.temperatureHigh = dayWeather.getAsJsonObject().get("temperatureHigh").toString();
             weather.temperatureHighTime = dayWeather.getAsJsonObject().get("temperatureHighTime").toString();
             weather.temperatureLow = dayWeather.getAsJsonObject().get("temperatureLow").toString();
@@ -110,6 +111,19 @@ public class Weather {
         }
 
         days_weather = weathers;
+
+
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(7).time + "7");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(6).time + "6");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(5).time + "5");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(4).time + "4");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(3).time + "3");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(2).time + "2");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(1).time + "1");
+        System.out.println("_______&&&&&&&&&"+ days_weather.get(0).time + "0");
+
+
+
 
     }
 
