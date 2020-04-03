@@ -14,51 +14,36 @@ import com.example.weather.R;
 import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FirstPage {
     private Activity activity;
     private ArrayList<String> locationsName = new ArrayList<>();
-    private ArrayAdapter adapter;
+    private ArrayList<Location> locations = new ArrayList<>();
+//    private ArrayAdapter adapter;
+
+    private LocationAdapter adapter;
+//    private StringAdapter adapter;
     private ListView listView;
+
+    private ArrayList<String> strings = new ArrayList<>();
 
     public FirstPage(Activity _activity) {
         this.activity = _activity;
-        this.adapter = new ArrayAdapter<String>(activity, R.layout.first_listview, locationsName);
+//        this.adapter = new LocationAdapter(activity, locations);
+        this.adapter = new LocationAdapter(activity, locations);
         this.listView = activity.findViewById(R.id.locations_listView);
         listView.setAdapter(adapter);
+
+
     }
 
-    public void updateList(ArrayList<Location> locations) {
-
-        locationsName.clear();
-        System.out.println("#$#$#$#$#$#$#$");
-
-        for (String name :
-                locationsName) {
-            System.out.println("@@@@@@@@@@@@" + name);
-        }
-
-        System.out.println("^^^^^^^^^^6");
-
-
-
-        for (Location location :
-                locations) {
-            locationsName.add(location.getName());
-            System.out.println("________" + location.getName());
-        }
-
-        for (String name :
-                locationsName) {
-            System.out.println("@@@@@@@@@@@@" + name);
-        }
-
-
+    public void updateList(ArrayList<Location> myLocations) {
+        locations.clear();
+        locations.addAll(myLocations);
 
         adapter.notifyDataSetChanged();
-
-
     }
 
     public String getEditTextLocation() {
@@ -79,6 +64,7 @@ public class FirstPage {
             }
         });
     }
+
 }
 
 

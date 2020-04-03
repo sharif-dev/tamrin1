@@ -1,7 +1,9 @@
 package com.example.weather.api;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import com.android.volley.Request;
@@ -12,6 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
 import com.example.weather.ui.FirstPage;
+import com.example.weather.ui.LocationAdapter;
 
 import java.util.ArrayList;
 
@@ -21,12 +24,9 @@ public class APIThread extends Thread {
     private RequestQueue requestQueue;
     private String dataType;
 
-    private String citiesRes;
-    private String weatherRes;
 
-
-    public APIThread(Context context, String dataType) {
-        requestQueue = Volley.newRequestQueue(context);
+    public APIThread(Activity activity, String dataType) {
+        requestQueue = Volley.newRequestQueue(activity);
         this.dataType = dataType;
 
         this.handler = new Handler(new Handler.Callback() {
@@ -36,7 +36,15 @@ public class APIThread extends Thread {
 
                      ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
-                     MainActivity.firstPage.updateList(locations);
+                     activity.runOnUiThread(new Runnable() {
+                         @Override
+                         public void run() {
+                             MainActivity.firstPage.updateList(locations);
+
+                         }
+                     });
+
+
 
 
                  }else if (msg.what == 1) { // update second page ui
@@ -59,7 +67,6 @@ public class APIThread extends Thread {
                 switch (dataType) {
                     case "location":
                         String locationName = MainActivity.firstPage.getEditTextLocation();
-                        System.out.println("????????????" + locationName);
                         getLocation(locationName);
                         break;
                     case "weather":

@@ -1,14 +1,12 @@
 package com.example.weather;
 
-import android.content.Context;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
-import com.example.weather.api.APIThread;
 import com.example.weather.ui.FirstPage;
+//import com.example.weather.ui.StringAdapter;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         firstPage = new FirstPage(this);
 
-
-
-
 //        Handler handler = new Handler();
 //        APIThread apiThread = new APIThread(this, "location");
 //
@@ -38,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     public void onSearchButtonClick(View view) {
         firstPage.onSearchButtonClick();
     }
 
 }
+
