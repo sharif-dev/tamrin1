@@ -20,6 +20,7 @@ public class Location {
     private String longitude;
 
     public static void processLocationsRes(String response, Handler handler) {
+        locations.clear();
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
         JsonArray features = (JsonArray) jsonObject.get("features");

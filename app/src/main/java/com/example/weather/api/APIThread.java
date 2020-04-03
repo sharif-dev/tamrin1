@@ -25,7 +25,7 @@ public class APIThread extends Thread {
     private String weatherRes;
 
 
-    public APIThread(Handler h, Context context, String dataType) {
+    public APIThread(Context context, String dataType) {
         requestQueue = Volley.newRequestQueue(context);
         this.dataType = dataType;
 
@@ -36,7 +36,7 @@ public class APIThread extends Thread {
 
                      ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
-                     FirstPage.updateList(locations);
+                     MainActivity.firstPage.updateList(locations);
 
 
                  }else if (msg.what == 1) { // update second page ui
@@ -55,8 +55,18 @@ public class APIThread extends Thread {
         handler.post(new Runnable() {
             @Override
             public void run() {
+
+                switch (dataType) {
+                    case "location":
+                        String locationName = MainActivity.firstPage.getEditTextLocation();
+                        System.out.println("????????????" + locationName);
+                        getLocation(locationName);
+                        break;
+                    case "weather":
+                        break;
+                }
 //                getWeather("51.67917", "32.65139");
-                getLocation("Esfahan");
+
 
             }
         });
@@ -83,7 +93,7 @@ public class APIThread extends Thread {
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                Weather.processWeatherRes(result);
+                Weather.processWeatherRes(result, handler);
             }
         }, url);
     }
