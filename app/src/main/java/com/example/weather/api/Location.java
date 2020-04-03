@@ -1,5 +1,7 @@
 package com.example.weather.api;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -17,7 +19,7 @@ public class Location {
     private String latitude;
     private String longitude;
 
-    public static void processLocationsRes(String response) {
+    public static void processLocationsRes(String response, Handler handler) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
         JsonArray features = (JsonArray) jsonObject.get("features");
@@ -40,9 +42,22 @@ public class Location {
 
             locations.add(location);
 
-
-
         }
 
+        Message message = new Message();
+        message.what = 0;
+        message.obj = locations;
+
+        handler.sendMessage(message);
+
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

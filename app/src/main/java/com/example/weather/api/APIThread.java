@@ -2,6 +2,7 @@ package com.example.weather.api;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,6 +11,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
+import com.example.weather.ui.FirstPage;
+
+import java.util.ArrayList;
 
 public class APIThread extends Thread {
 
@@ -22,9 +26,27 @@ public class APIThread extends Thread {
 
 
     public APIThread(Handler h, Context context, String dataType) {
-        this.handler = h;
         requestQueue = Volley.newRequestQueue(context);
         this.dataType = dataType;
+
+        this.handler = new Handler(new Handler.Callback() {
+             @Override
+             public boolean handleMessage(Message msg) {
+                 if (msg.what == 0) { // update first page ui
+
+                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
+
+                     FirstPage.updateList(locations);
+
+
+                 }else if (msg.what == 1) { // update second page ui
+                     //update second page list
+                     System.out.println("!@!@!@!@!@!@!@ updte second page");
+                 }
+
+                 return true;
+             }
+         });
 
 
     }
@@ -49,7 +71,7 @@ public class APIThread extends Thread {
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                Location.processLocationsRes(result);
+                Location.processLocationsRes(result, handler);
             }
         }, url);
     }

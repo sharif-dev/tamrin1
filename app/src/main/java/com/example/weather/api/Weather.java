@@ -1,5 +1,7 @@
 package com.example.weather.api;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -53,7 +55,7 @@ public class Weather {
     private String apparentTemperatureMax;
     private String apparentTemperatureMaxTime;
 
-    public static void processWeatherRes(String response) {
+    public static void processWeatherRes(String response, Handler handler) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
         JsonElement dailyData = jsonObject.get("daily");
@@ -112,17 +114,11 @@ public class Weather {
 
         days_weather = weathers;
 
+        Message message = new Message();
+        message.what = 1;
+        message.obj = days_weather;
 
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(7).time + "7");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(6).time + "6");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(5).time + "5");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(4).time + "4");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(3).time + "3");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(2).time + "2");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(1).time + "1");
-        System.out.println("_______&&&&&&&&&"+ days_weather.get(0).time + "0");
-
-
+        handler.sendMessage(message);
 
 
     }
