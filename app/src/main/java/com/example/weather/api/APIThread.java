@@ -30,31 +30,22 @@ public class APIThread extends Thread {
         this.dataType = dataType;
 
         this.handler = new Handler(new Handler.Callback() {
-             @Override
-             public boolean handleMessage(Message msg) {
-                 if (msg.what == 0) { // update first page ui
+            @Override
+            public boolean handleMessage(Message msg) {
+                if (msg.what == 0) { // update first page ui
 
-                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
-
-                     activity.runOnUiThread(new Runnable() {
-                         @Override
-                         public void run() {
-                             MainActivity.firstPage.updateList(locations);
-
-                         }
-                     });
+                    ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
+                    MainActivity.firstPage.updateList(locations);
 
 
+                } else if (msg.what == 1) { // update second page ui
+                    //update second page list
+                    System.out.println("!@!@!@!@!@!@!@ updte second page");
+                }
 
-
-                 }else if (msg.what == 1) { // update second page ui
-                     //update second page list
-                     System.out.println("!@!@!@!@!@!@!@ updte second page");
-                 }
-
-                 return true;
-             }
-         });
+                return true;
+            }
+        });
 
 
     }
