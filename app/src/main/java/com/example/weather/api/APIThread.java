@@ -1,7 +1,9 @@
 package com.example.weather.api;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+
 import android.os.Message;
 
 import com.android.volley.Request;
@@ -13,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
 import com.example.weather.ui.FirstPage;
 
+
 import java.util.ArrayList;
 
 public class APIThread extends Thread {
@@ -21,29 +24,27 @@ public class APIThread extends Thread {
     private RequestQueue requestQueue;
     private String dataType;
 
-    private String citiesRes;
-    private String weatherRes;
 
 
-    public APIThread(Handler h, Context context, String dataType) {
-        requestQueue = Volley.newRequestQueue(context);
+    public APIThread(Activity activity, String dataType) {
+        requestQueue = Volley.newRequestQueue(activity);
+
         this.dataType = dataType;
 
         this.handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
-                if (msg.what == 0) { //update first page ui
+
+                if (msg.what == 0) { // update first page ui
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
-                    FirstPage.updateFirstPage(locations);
-
-                    System.out.println("_________" + locations);
+                    MainActivity.firstPage.updateList(locations);
 
 
-
-
-                }else if (msg.what == 1) { // update second page ui
+                } else if (msg.what == 1) { // update second page ui
+                    //update second page list
+                    System.out.println("!@!@!@!@!@!@!@ updte second page");
 
                 }
 
@@ -58,8 +59,17 @@ public class APIThread extends Thread {
         handler.post(new Runnable() {
             @Override
             public void run() {
+
+                switch (dataType) {
+                    case "location":
+                        String locationName = MainActivity.firstPage.getEditTextLocation();
+                        getLocation(locationName);
+                        break;
+                    case "weather":
+                        break;
+                }
 //                getWeather("51.67917", "32.65139");
-                getLocation("Esfahan");
+
 
             }
         });
