@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.weather.ui.FirstPage;
+import com.example.weather.ui.SecondPage;
 //import com.example.weather.ui.StringAdapter;
 
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public final static String mapbox_token = "pk.eyJ1IjoiYmFoYXJraGQiLCJhIjoiY2s3c3p5NHh5MGtvdzN" +
             "rbnFvNXF6Z2I5MSJ9.J0j1SE9LHQV1NzNGQ2zX0A";
     public static FirstPage firstPage;
+    public static SecondPage secondPage;
 
 
     @Override
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.first_page);
 
         firstPage = new FirstPage(this);
+        secondPage  = new SecondPage(this);
+
 
 //        Handler handler = new Handler();
 //        APIThread apiThread = new APIThread(this, "location");
