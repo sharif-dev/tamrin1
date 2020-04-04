@@ -1,12 +1,10 @@
 package com.example.weather.api;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 
 import android.os.Message;
-import android.view.View;
-import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,7 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
-import com.example.weather.ui.FirstPage;
+import com.example.weather.R;
 
 
 import java.util.ArrayList;
@@ -49,12 +47,13 @@ public class APIThread extends Thread {
 
                     MainActivity.secondPage.updaetWeather(weathers);
 
+
+
                     System.out.println("Number of weathers : " + weathers.size());
+                    TextView view = MainActivity.secondPage.getSecPageActivity().findViewById(R.id.weather_page);
                     //todo : for test
-                    for (Weather w : weathers){
-                        System.out.println("Max"+ w.getTemperatureMax());
-                        System.out.println("MIn" + w.getTemperatureMin());
-                    }
+                    view.setText("MIn temp : "+weathers.get(0).getTemperatureMin() + "\n max temp : " + weathers.get(0).getTemperatureMax());
+
                     System.out.println("!@!@!@!@!@!@!@ updte second page");
 
                 }
