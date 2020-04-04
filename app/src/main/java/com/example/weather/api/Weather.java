@@ -122,5 +122,159 @@ public class Weather {
 
     }
 
+    public static ArrayList<Weather> getDays_weather() {
+        return days_weather;
+    }
 
+    public String getTime() {
+        return time;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public String getSunriseTime() {
+        return sunriseTime;
+    }
+
+    public String getSunsetTime() {
+        return sunsetTime;
+    }
+
+    public String getMoonPhase() {
+        return moonPhase;
+    }
+
+    public String getPrecipIntensity() {
+        return precipIntensity;
+    }
+
+    public String getPrecipIntensityMax() {
+        return precipIntensityMax;
+    }
+
+    public String getPrecipIntensityMaxTime() {
+        return precipIntensityMaxTime;
+    }
+
+    public String getPrecipProbability() {
+        return precipProbability;
+    }
+
+    public String getTemperatureHigh() {
+        return temperatureHigh;
+    }
+
+    public String getTemperatureHighTime() {
+        return temperatureHighTime;
+    }
+
+    public String getTemperatureLow() {
+        return temperatureLow;
+    }
+
+    public String getTemperatureLowTime() {
+        return temperatureLowTime;
+    }
+
+    public String getApparentTemperatureHigh() {
+        return apparentTemperatureHigh;
+    }
+
+    public String getApparentTemperatureHighTime() {
+        return apparentTemperatureHighTime;
+    }
+
+    public String getApparentTemperatureLow() {
+        return apparentTemperatureLow;
+    }
+
+    public String getApparentTemperatureLowTime() {
+        return apparentTemperatureLowTime;
+    }
+
+    public String getDewPoint() {
+        return dewPoint;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public String getPressure() {
+        return pressure;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public String getWindGust() {
+        return windGust;
+    }
+
+    public String getWindGustTime() {
+        return windGustTime;
+    }
+
+    public String getWindBearing() {
+        return windBearing;
+    }
+
+    public String getCloudCover() {
+        return cloudCover;
+    }
+
+    public String getUvIndex() {
+        return uvIndex;
+    }
+
+    public String getUvIndexTime() {
+        return uvIndexTime;
+    }
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public String getOzone() {
+        return ozone;
+    }
+
+    public String getTemperatureMin() {
+        return temperatureMin;
+    }
+
+    public String getTemperatureMinTime() {
+        return temperatureMinTime;
+    }
+
+    public String getTemperatureMax() {
+        return temperatureMax;
+    }
+
+    public String getTemperatureMaxTime() {
+        return temperatureMaxTime;
+    }
+
+    public String getApparentTemperatureMin() {
+        return apparentTemperatureMin;
+    }
+
+    public String getApparentTemperatureMinTime() {
+        return apparentTemperatureMinTime;
+    }
+
+    public String getApparentTemperatureMax() {
+        return apparentTemperatureMax;
+    }
+
+    public String getApparentTemperatureMaxTime() {
+        return apparentTemperatureMaxTime;
+    }
 }
