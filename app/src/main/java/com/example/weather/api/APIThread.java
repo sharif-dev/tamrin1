@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 
 import android.os.Message;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,7 +27,6 @@ public class APIThread extends Thread {
     private String dataType;
 
 
-
     public APIThread(Activity activity, String dataType) {
         requestQueue = Volley.newRequestQueue(activity);
 
@@ -44,6 +45,16 @@ public class APIThread extends Thread {
 
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
+                    ArrayList<Weather> weathers = (ArrayList<Weather>) msg.obj;
+
+                    MainActivity.secondPage.updaetWeather(weathers);
+
+                    System.out.println("Number of weathers : " + weathers.size());
+                    //todo : for test
+                    for (Weather w : weathers){
+                        System.out.println("Max"+ w.getTemperatureMax());
+                        System.out.println("MIn" + w.getTemperatureMin());
+                    }
                     System.out.println("!@!@!@!@!@!@!@ updte second page");
 
                 }
@@ -66,6 +77,7 @@ public class APIThread extends Thread {
                         getLocation(locationName);
                         break;
                     case "weather":
+                        getWeather(MainActivity.secondPage.getLatitude() , MainActivity.secondPage.getLongitude());
                         break;
                 }
 //                getWeather("51.67917", "32.65139");
