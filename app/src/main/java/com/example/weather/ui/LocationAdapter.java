@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.weather.MainActivity;
 import com.example.weather.R;
+import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
 
 import java.util.ArrayList;
@@ -52,6 +53,12 @@ public class LocationAdapter extends ArrayAdapter<Location> {
                 System.out.println("location sekevted :::::::"+location.getName());
                 System.out.println("long :" + location.getLongitude());
                 System.out.println("Lant : " + location.getLatitude());
+                //todo : new page2
+                MainActivity.secondPage.setLatitude(location.getLatitude());
+                MainActivity.secondPage.setLongitude(location.getLongitude());
+
+                APIThread apiThread = new APIThread(MainActivity.secondPage.getSecPageActivity() , "weather");
+                apiThread.start();
             }
         });
         TextView locationName = convertView.findViewById(R.id.location);
