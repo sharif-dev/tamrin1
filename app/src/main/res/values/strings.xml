@@ -2,4 +2,5 @@
     <string name="app_name">Weather</string>
     <string name="enter_location">Enter Location …</string>
     <string name="search">Search</string>
+
 </resources>
