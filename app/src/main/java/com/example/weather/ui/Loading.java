@@ -55,17 +55,17 @@ public class Loading extends Fragment {
 
         if(activity.findViewById(R.id.fragment_container) != null) {
             System.out.println("WHATTTTTTTTT?");
-            Loading l = new Loading();
-            l.setArguments(activity.getIntent().getExtras());
+            this.setArguments(activity.getIntent().getExtras());
             ////
 ////            activity.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, l).commit();
-            activity.getFragmentManager().beginTransaction().replace(R.id.fragment_container, l).commit();
+            activity.getFragmentManager().beginTransaction().replace(R.id.fragment_container, this).commit();
 
 
 
 
         }
     }
+
 
 
 
