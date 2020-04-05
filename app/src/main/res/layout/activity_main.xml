@@ -7,12 +7,6 @@
     tools:context=".MainActivity"
     tools:visibility="visible">
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        style="?android:progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
 
 
 </RelativeLayout>

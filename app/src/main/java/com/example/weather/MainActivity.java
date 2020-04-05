@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.weather.ui.CustomToast;
 import com.example.weather.ui.FirstPage;
 import com.example.weather.ui.Loading;
 //import com.example.weather.ui.StringAdapter;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             loading.showLoading(this);
         }
         else{
+            CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
             //go to second page loading info from memory
         }
 
