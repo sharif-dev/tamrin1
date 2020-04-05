@@ -13,7 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.weather.ui.FirstPage;
-import com.example.weather.ui.loading;
+import com.example.weather.ui.Loading;
 //import com.example.weather.ui.StringAdapter;
 
 
@@ -33,16 +33,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.first_page);
 
         firstPage = new FirstPage(this);
-        if(findViewById(R.id.fragment_container) != null) {
-            loading l = new loading();
-            l.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, l).commit();
 
-        }
-        //        Handler handler = new Handler();
-//        APIThread apiThread = new APIThread(this, "location");
-//
-//        apiThread.start();
+        Loading loading = new Loading();
+        loading.showLoading(this
+        );
 
 
     }
