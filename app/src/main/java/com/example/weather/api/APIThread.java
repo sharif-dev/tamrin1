@@ -48,12 +48,7 @@ public class APIThread extends Thread {
                     MainActivity.secondPage.updaetWeather(weathers);
 
 
-
-                    System.out.println("Number of weathers : " + weathers.size());
-                    TextView view = MainActivity.secondPage.getSecPageActivity().findViewById(R.id.weather_page);
-                    //todo : for test
-                    view.setText("MIn temp : "+weathers.get(0).getTemperatureMin() + "\n max temp : " + weathers.get(0).getTemperatureMax());
-
+                    MainActivity.secondPage.updateUI();
                     System.out.println("!@!@!@!@!@!@!@ updte second page");
 
                 }

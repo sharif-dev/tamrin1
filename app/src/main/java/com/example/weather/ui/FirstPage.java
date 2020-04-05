@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,7 @@ public class FirstPage {
 //    private ArrayAdapter adapter;
 
     private LocationAdapter adapter;
-//    private StringAdapter adapter;
+    //    private StringAdapter adapter;
     private ListView listView;
 
     private ArrayList<String> strings = new ArrayList<>();
@@ -35,14 +36,14 @@ public class FirstPage {
 //        this.adapter = new LocationAdapter(activity, locations);
         this.adapter = new LocationAdapter(activity, locations);
         this.listView = activity.findViewById(R.id.locations_listView);
-        listView.setAdapter(adapter);
-
-
+        this.listView.setAdapter(adapter);
     }
+
 
     public void updateList(ArrayList<Location> myLocations) {
         locations.clear();
         locations.addAll(myLocations);
+
 
         adapter.notifyDataSetChanged();
     }
@@ -66,5 +67,8 @@ public class FirstPage {
         });
     }
 
+    public Activity getActivity() {
+        return activity;
+    }
 }
 
