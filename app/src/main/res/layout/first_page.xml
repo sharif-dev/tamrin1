@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gray_background"
+    >
 
     <EditText
         android:id="@+id/enter_location"
@@ -10,6 +12,14 @@
         android:hint="@string/enter_location"
         android:layout_toLeftOf="@+id/search_btn"
         android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textCursorDrawable="@color/gray"
+        android:cursorVisible="true"
+        android:backgroundTint="@color/gray"
+        android:textColorHint="#b5b5b5"
+
 
         />
 
@@ -17,10 +27,33 @@
         android:id="@+id/search_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#2f3a40"
         android:text="@string/search"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_alignParentRight="true"
         android:onClick="onSearchButtonClick"
+
+        android:background="@drawable/button_shape"
+
         />
+
+<!--    <Button-->
+<!--        android:id="@+id/search_btn"-->
+<!--        android:layout_width="132dp"-->
+<!--        android:layout_height="46dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:background="@drawable/button_shape"-->
+
+<!--        android:onClick="onSearchButtonClick"-->
+<!--        android:shadowColor="#A8A8A8"-->
+<!--        android:shadowDx="0"-->
+<!--        android:shadowDy="0"-->
+<!--        android:shadowRadius="5"-->
+<!--        android:text="Search"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="15sp" />-->
 
     <ListView
         android:id="@+id/locations_listView"
