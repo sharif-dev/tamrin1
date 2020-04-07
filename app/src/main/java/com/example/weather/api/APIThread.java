@@ -40,7 +40,7 @@ public class APIThread extends Thread {
 
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
-                    System.out.println("!@!@!@!@!@!@!@ updte second page");
+                    System.out.println("!@!@!@!@!@!@!@ update second page");
                 }
 
                 return true;

@@ -35,13 +35,11 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         Location location = getItem(position);
 
-
-
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.first_listview, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.location_item, parent, false);
         }
 
-        TextView locationName = convertView.findViewById(R.id.location);
+        TextView locationName = convertView.findViewById(R.id.location_name);
         locationName.setText(location.getName());
 
         return convertView;
