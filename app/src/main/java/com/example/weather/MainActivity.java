@@ -19,15 +19,13 @@ public class MainActivity extends AppCompatActivity {
     public static FirstPage firstPage;
     public static SecondPage secondPage;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_page);
 
         firstPage = new FirstPage(this);
-        secondPage  = new SecondPage(this);
-
+        secondPage = new SecondPage(this);
 
 //        Handler handler = new Handler();
 //        APIThread apiThread = new APIThread(this, "location");
