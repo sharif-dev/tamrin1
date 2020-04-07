@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
             firstPage = new FirstPage(this);
 
 
-            Loading loading = new Loading();
-            loading.showLoading(this);
+//            Loading loading = new Loading();
+//            loading.showLoading(this);
         }
         else{
+            System.out.println("hello?");
             CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
             //go to second page loading info from memory
         }
