@@ -8,7 +8,7 @@
     android:layout_alignParentBottom="true"
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true"
-    tools:context=".ui.loading">
+    tools:context=".ui.Loading">
 
     <ImageView
         android:id="@+id/anim_load"

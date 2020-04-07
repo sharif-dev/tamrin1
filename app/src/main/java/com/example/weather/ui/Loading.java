@@ -4,7 +4,6 @@ package com.example.weather.ui;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentActivity;
@@ -24,23 +23,14 @@ import com.example.weather.R;
  */
 public class Loading extends Fragment {
 
-    FragmentManager fragmentManager;
-
-    private FragmentActivity myContext;
-
     public Loading() {
-
-
+        System.out.println("HELLOOOOOOOOOO");
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        System.out.println("aloooooooooooooo");
-
-
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.loading, container, false);
@@ -51,23 +41,29 @@ public class Loading extends Fragment {
     }
 
     public void showLoading(Activity activity) {
-        System.out.println("HELLOOOOOOOO??????");
 
         if(activity.findViewById(R.id.fragment_container) != null) {
-            System.out.println("WHATTTTTTTTT?");
-            Loading l = new Loading();
-            l.setArguments(activity.getIntent().getExtras());
-            ////
-////            activity.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, l).commit();
-            activity.getFragmentManager().beginTransaction().replace(R.id.fragment_container, l).commit();
+            this.setArguments(activity.getIntent().getExtras());
 
 
-
+            android.app.FragmentManager fragmentManager = activity.getFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.add(R.id.fragment_container, this, "loadingFragment");
+            ft.commit();
 
         }
     }
 
+    public void removeLoadFragment(Activity activity) {
+        if(activity.findViewById(R.id.fragment_container) != null) {
+            Fragment loading = getFragmentManager().findFragmentByTag("loadingFragment");
+            if (loading != null) {
+                getFragmentManager().beginTransaction().remove(loading).commit();
+            }
+        }
 
+
+    }
 
 }
 

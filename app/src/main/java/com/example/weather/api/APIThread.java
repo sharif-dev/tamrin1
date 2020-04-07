@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 
 import android.os.Message;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,7 +15,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
+import com.example.weather.R;
 import com.example.weather.ui.FirstPage;
+import com.example.weather.ui.Loading;
 
 
 import java.util.ArrayList;
@@ -23,7 +27,6 @@ public class APIThread extends Thread {
     private Handler handler;
     private RequestQueue requestQueue;
     private String dataType;
-
 
 
     public APIThread(Activity activity, String dataType) {
@@ -39,6 +42,7 @@ public class APIThread extends Thread {
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
+                    MainActivity.firstPage.getLoadFragment().removeLoadFragment(MainActivity.firstPage.getActivity());
                     MainActivity.firstPage.updateList(locations);
 
 
@@ -63,6 +67,12 @@ public class APIThread extends Thread {
                 switch (dataType) {
                     case "location":
                         String locationName = MainActivity.firstPage.getEditTextLocation();
+
+                        MainActivity.firstPage.getLoadFragment().showLoading(MainActivity.firstPage.getActivity());
+                        System.out.println("!@!@!@!@!@!@!@!"+MainActivity.firstPage.getLoadFragment());
+
+
+
                         getLocation(locationName);
                         break;
                     case "weather":
