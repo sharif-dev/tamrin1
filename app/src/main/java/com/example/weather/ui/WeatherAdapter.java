@@ -15,6 +15,8 @@ import com.example.weather.R;
 import com.example.weather.api.Location;
 import com.example.weather.api.Weather;
 
+import org.w3c.dom.Text;
+
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,8 +47,11 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.second_listview, parent, false);
         }
 
-        TextView  temp = convertView.findViewById(R.id.weather);
-
+        TextView minTemp = convertView.findViewById(R.id.weather_min_temp);
+        TextView maxTemp = convertView.findViewById(R.id.weather_max_temp);
+        TextView weatherTime = convertView.findViewById(R.id.weather_time);
+        TextView summery = convertView.findViewById(R.id.weather_summery);
+        TextView description = convertView.findViewById(R.id.weather_icon);
         ImageView status  = convertView.findViewById(R.id.status);
 
         //System.out.println("weather icon : "  + weather.getIcon());
@@ -61,7 +66,16 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
 
         //System.out.println("WEATHER SUNRISE  :" + weather.getSunriseTime());
         //System.out.println("WEATHER TIME CON : " + time);
-        temp.setText("min temp : "+weather.getTemperatureMin() + "\n max : " + weather.getTemperatureMax() + "\n  icon : "+ weather.getIcon() + "\n Time : " + formattedDate);
+        weatherTime.setText(formattedDate);
+        minTemp.setText("Minimum Temperature : " + weather.getTemperatureMin()+"℃");
+        maxTemp.setText("Maximum Temperature : " + weather.getTemperatureMax()+"℃");
+        summery.setText(weather.getSummary());
+        description.setText(weather.getIcon());
+
+
+
+
+
         //System.out.println("---------------------------------------------");
         //status.setImageResource(R.drawable.wi_tornao);
         status = setImage(weather.getIcon() , status);
