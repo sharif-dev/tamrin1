@@ -68,7 +68,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
             }
         });
-        TextView locationName = convertView.findViewById(R.id.location);
+        TextView locationName = convertView.findViewById(R.id.location_name);
 
         locationName.setText(location.getName());
 

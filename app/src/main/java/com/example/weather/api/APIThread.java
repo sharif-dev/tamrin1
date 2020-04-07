@@ -35,6 +35,7 @@ public class APIThread extends Thread {
                 if (msg.what == 0) { // update first page ui
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
+                    System.out.println("HERERERERERERERERERE");
 
                     MainActivity.firstPage.updateList(locations);
 
