@@ -1,5 +1,8 @@
 package com.example.weather;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.weather.ui.CustomToast;
 import com.example.weather.ui.FirstPage;
 import com.example.weather.ui.Loading;
 //import com.example.weather.ui.StringAdapter;
@@ -31,18 +35,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.first_page);
+        setContentView(R.layout.activity_main);
 
-        firstPage = new FirstPage(this);
+        boolean isConnected = isConnected();
+        if(isConnected) {
 
 
+            setContentView(R.layout.first_page);
+            firstPage = new FirstPage(this);
 
-//        Loading loading = new Loading();
-//        loading.showLoading(this);
 
+            Loading loading = new Loading();
+            loading.showLoading(this);
+        }
+        else{
+            CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
+            //go to second page loading info from memory
+        }
 
     }
 
+    private boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
 
 
     public void onSearchButtonClick(View view) {

@@ -45,7 +45,6 @@ public class Loading extends Fragment {
         if(activity.findViewById(R.id.fragment_container) != null) {
             this.setArguments(activity.getIntent().getExtras());
 
-
             android.app.FragmentManager fragmentManager = activity.getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.add(R.id.fragment_container, this, "loadingFragment");
@@ -64,6 +63,7 @@ public class Loading extends Fragment {
 
 
     }
+
 
 }
 
