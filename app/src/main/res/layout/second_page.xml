@@ -11,7 +11,7 @@
         android:id="@+id/weather_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="5.0sp"
-        />
+        android:divider="@drawable/list_divider"
+        android:dividerHeight="5.0sp" />
 
 </LinearLayout>
