@@ -49,6 +49,7 @@ public class APIThread extends Thread {
 
 
                     MainActivity.secondPage.updateUI();
+                    //MainActivity.secondPage.updateUIT();
                     System.out.println("!@!@!@!@!@!@!@ updte second page");
 
                 }
