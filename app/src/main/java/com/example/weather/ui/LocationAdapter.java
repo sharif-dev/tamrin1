@@ -22,9 +22,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
 
     public LocationAdapter(Context context, ArrayList<Location> locations) {
-
         super(context, 0, locations);
-        System.out.println("^^^()()()()())()^");
     }
 
     @Override
@@ -38,13 +36,10 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         Location location = getItem(position);
 
-        System.out.println("^^^^^^^^" + location.getName());
-
-
-
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.first_listview, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.location_item, parent, false);
         }
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +69,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             }
         });
         TextView locationName = convertView.findViewById(R.id.location);
+
         locationName.setText(location.getName());
 
         return convertView;
