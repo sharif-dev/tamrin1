@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Handler;
 
 import android.os.Message;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,7 +12,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.MainActivity;
-import com.example.weather.R;
 
 
 import java.util.ArrayList;
@@ -45,7 +43,11 @@ public class APIThread extends Thread {
                     //update second page list
                     ArrayList<Weather> weathers = (ArrayList<Weather>) msg.obj;
 
-                    MainActivity.secondPage.updaetWeather(weathers);
+                    System.out.println("2.got weatherrrrrr");
+
+                    MainActivity.secondPage.updateWeather(weathers);
+
+                    System.out.println("3.update uiiiiiiiiii");
 
 
                     MainActivity.secondPage.updateUI();
@@ -57,8 +59,6 @@ public class APIThread extends Thread {
                 return true;
             }
         });
-
-
     }
 
     public void run() {
@@ -72,6 +72,7 @@ public class APIThread extends Thread {
                         getLocation(locationName);
                         break;
                     case "weather":
+                        System.out.println("1.wanna get weatherrrrrrrrr");
                         getWeather(MainActivity.secondPage.getLatitude() , MainActivity.secondPage.getLongitude());
                         break;
                 }

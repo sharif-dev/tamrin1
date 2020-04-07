@@ -23,7 +23,7 @@ public class SecondPage {
         this.secPageActivity = activity;
     }
 
-    public void updaetWeather(ArrayList<Weather> myWheathers){
+    public void updateWeather(ArrayList<Weather> myWheathers){
         weathers.clear();
         weathers.addAll(myWheathers);
     }
