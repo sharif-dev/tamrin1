@@ -2,6 +2,8 @@ package com.example.weather.api;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -89,46 +91,29 @@ public class APIThread extends Thread {
 
     public void sendRequest(final VolleyCallback callback, String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                url, response -> callback.onSuccess(response), Throwable::printStackTrace);
+                url, response -> callback.onSuccess(response), volleyError -> {
+            volleyError.printStackTrace();
+            showErrorToast();
+
+        });
 
         requestQueue.add(stringRequest);
     }
 
+    public void showErrorToast() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(FirstActivity.firstPage.getActivity(),
+                        "درخواست شما با خطا مواجه شد!", Toast.LENGTH_SHORT).show();
+                FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
+            }
+        });
 
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
-
-    public RequestQueue getRequestQueue() {
-        return requestQueue;
-    }
-
-    public void setRequestQueue(RequestQueue requestQueue) {
-        this.requestQueue = requestQueue;
-    }
-
-    public String getDataType() {
-        return dataType;
-    }
-
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public String getLatitude() {
-        return latitude;
     }
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
     }
 
     public void setLongitude(String longitude) {
