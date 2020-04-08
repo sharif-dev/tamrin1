@@ -62,4 +62,12 @@ public class Location {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
 }

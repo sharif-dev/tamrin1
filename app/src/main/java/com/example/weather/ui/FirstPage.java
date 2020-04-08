@@ -19,7 +19,7 @@ public class FirstPage {
 //    private ArrayAdapter adapter;
 
     private LocationAdapter adapter;
-//    private StringAdapter adapter;
+    //    private StringAdapter adapter;
     private ListView listView;
 
     private ArrayList<String> strings = new ArrayList<>();
@@ -35,12 +35,13 @@ public class FirstPage {
 
         loadFragment = new Loading();
 
-
     }
+
 
     public void updateList(ArrayList<Location> myLocations) {
         locations.clear();
         locations.addAll(myLocations);
+
 
         adapter.notifyDataSetChanged();
     }
@@ -66,6 +67,7 @@ public class FirstPage {
         return activity;
     }
 
+
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
@@ -77,5 +79,6 @@ public class FirstPage {
     public void setLoadFragment(Loading loadFragment) {
         this.loadFragment = loadFragment;
     }
+
 }
 

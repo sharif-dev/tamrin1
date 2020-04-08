@@ -2,7 +2,12 @@
     <string name="app_name">Weather</string>
     <string name="enter_location">Enter Location …</string>
     <string name="search">Search</string>
-    <string name="network_connection">Internet is not connected</string>
-    <string name="salaam">salaam</string>
+    <string name="title_activity_second_page">SecondPage</string>
+    <string name="max_temp">Maximum Temperature :</string>
+    <string name="min_temp">Minimum Temperature :</string>
+    <string name="time">Time :</string>
+    <string name="summery">Summery :</string>
+    <string name="icon">Climate :</string>
+    <string name="network_connection">Network has problems!</string>
 
 </resources>

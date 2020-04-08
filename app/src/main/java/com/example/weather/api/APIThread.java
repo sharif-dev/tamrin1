@@ -1,12 +1,10 @@
 package com.example.weather.api;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 
 import android.os.Message;
-import android.view.View;
-import android.widget.FrameLayout;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,10 +12,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.weather.MainActivity;
-import com.example.weather.R;
-import com.example.weather.ui.FirstPage;
-import com.example.weather.ui.Loading;
+
+import com.example.weather.activities.FirstActivity;
+import com.example.weather.activities.WeatherParcelable;
+
 
 
 import java.util.ArrayList;
@@ -27,7 +25,8 @@ public class APIThread extends Thread {
     private Handler handler;
     private RequestQueue requestQueue;
     private String dataType;
-
+    private String latitude;
+    private String longitude;
 
     public APIThread(Activity activity, String dataType) {
         requestQueue = Volley.newRequestQueue(activity);
@@ -42,21 +41,20 @@ public class APIThread extends Thread {
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
-                    MainActivity.firstPage.getLoadFragment().removeLoadFragment(MainActivity.firstPage.getActivity());
-                    MainActivity.firstPage.updateList(locations);
+                    FirstActivity.firstPage.getLoadFragment().removeLoadFragment(FirstActivity.firstPage.getActivity());
+                    FirstActivity.firstPage.updateList(locations);
 
 
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
-                    System.out.println("!@!@!@!@!@!@!@ updte second page");
+                    ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) msg.obj;
+                    FirstActivity.enterSecondPage(weathers, FirstActivity.firstPage.getActivity());
 
                 }
 
                 return true;
             }
         });
-
-
     }
 
     public void run() {
@@ -66,16 +64,15 @@ public class APIThread extends Thread {
 
                 switch (dataType) {
                     case "location":
-                        String locationName = MainActivity.firstPage.getEditTextLocation();
 
-                        MainActivity.firstPage.getLoadFragment().showLoading(MainActivity.firstPage.getActivity());
-                        System.out.println("!@!@!@!@!@!@!@!"+MainActivity.firstPage.getLoadFragment());
+                        String locationName = FirstActivity.firstPage.getEditTextLocation();
 
-
-
+                        FirstActivity.firstPage.getLoadFragment().showLoading(FirstActivity.firstPage.getActivity());
+                        System.out.println("!@!@!@!@!@!@!@!"+FirstActivity.firstPage.getLoadFragment());
                         getLocation(locationName);
                         break;
                     case "weather":
+                        getWeather(latitude , longitude);
                         break;
                 }
 //                getWeather("51.67917", "32.65139");
@@ -87,8 +84,8 @@ public class APIThread extends Thread {
 
 
     public void getLocation(String cityName) {
-        String url = MainActivity.mapbox_url + cityName + ".json?access" +
-                "_token=" + MainActivity.mapbox_token;
+        String url = FirstActivity.mapbox_url + cityName + ".json?access" +
+                "_token=" + FirstActivity.mapbox_token;
 
 
         sendRequest(new VolleyCallback() {
@@ -100,13 +97,13 @@ public class APIThread extends Thread {
     }
 
     public void getWeather(String latitude, String longitude) {
-        String url = MainActivity.darksky_url + MainActivity.darksky_secret_key + "/" +
+        String url = FirstActivity.darksky_url + FirstActivity.darksky_secret_key + "/" +
                 latitude + "," + longitude;
 
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                Weather.processWeatherRes(result, handler);
+                WeatherParcelable.processWeatherRes(result, handler);
             }
         }, url);
     }
@@ -152,4 +149,19 @@ public class APIThread extends Thread {
         this.dataType = dataType;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }
