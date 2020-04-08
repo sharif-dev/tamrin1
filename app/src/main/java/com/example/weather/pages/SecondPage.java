@@ -1,16 +1,17 @@
-package com.example.weather.ui;
+package com.example.weather.pages;
 
 import android.app.Activity;
 import android.widget.ListView;
 
 import com.example.weather.R;
-import com.example.weather.activities.WeatherParcelable;
+import com.example.weather.api.Weather;
+import com.example.weather.ui.WeatherAdapter;
 
 import java.util.ArrayList;
 
 public class SecondPage {
     private Activity secPageActivity;
-    private ArrayList<WeatherParcelable> weathers = new ArrayList<>();
+    private ArrayList<Weather> weathers = new ArrayList<>();
 
     private String latitude;
     private String longitude;
@@ -23,7 +24,7 @@ public class SecondPage {
         this.secPageActivity = activity;
     }
 
-    public void updateWeather(ArrayList<WeatherParcelable> myWheathers){
+    public void updateWeather(ArrayList<Weather> myWheathers){
         weathers.clear();
         weathers.addAll(myWheathers);
     }

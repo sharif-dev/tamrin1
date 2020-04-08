@@ -1,4 +1,4 @@
-package com.example.weather.activities;
+package com.example.weather.api;
 
 import android.os.Handler;
 import android.os.Message;
@@ -12,9 +12,9 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
-public class WeatherParcelable implements Parcelable {
+public class Weather implements Parcelable {
 
-    private static ArrayList<WeatherParcelable> days_weather = new ArrayList<>();
+    private static ArrayList<Weather> days_weather = new ArrayList<>();
 
     private String time;
     private String summary;
@@ -22,12 +22,12 @@ public class WeatherParcelable implements Parcelable {
     private String temperatureMin;
     private String temperatureMax;
 
-    public WeatherParcelable() {
+    public Weather() {
 
     }
 
 
-    protected WeatherParcelable(Parcel in) {
+    protected Weather(Parcel in) {
         time = in.readString();
         summary = in.readString();
         icon = in.readString();
@@ -35,15 +35,15 @@ public class WeatherParcelable implements Parcelable {
         temperatureMax = in.readString();
     }
 
-    public static final Creator<WeatherParcelable> CREATOR = new Creator<WeatherParcelable>() {
+    public static final Creator<Weather> CREATOR = new Creator<Weather>() {
         @Override
-        public WeatherParcelable createFromParcel(Parcel in) {
-            return new WeatherParcelable(in);
+        public Weather createFromParcel(Parcel in) {
+            return new Weather(in);
         }
 
         @Override
-        public WeatherParcelable[] newArray(int size) {
-            return new WeatherParcelable[size];
+        public Weather[] newArray(int size) {
+            return new Weather[size];
         }
     };
 
@@ -69,16 +69,16 @@ public class WeatherParcelable implements Parcelable {
         JsonObject datasObject = dailyData.getAsJsonObject();
         JsonArray datas = datasObject.getAsJsonArray("data");
 
-        ArrayList<WeatherParcelable> weathers = new ArrayList<>();
+        ArrayList<Weather> weathers = new ArrayList<>();
 
-//        WeatherParcelable weather = new WeatherParcelable();
+//        Weather weather = new Weather();
 
         for (JsonElement dayWeather :
                 datas) {
 
-            WeatherParcelable weather = new WeatherParcelable();
+            Weather weather = new Weather();
 
-//            WeatherParcelable weather = new WeatherParcelable();
+//            Weather weather = new Weather();
 //            weathers.add(weather);
             weather.time = dayWeather.getAsJsonObject().get("time").toString();
             weather.summary = dayWeather.getAsJsonObject().get("summary").toString();
@@ -101,7 +101,7 @@ public class WeatherParcelable implements Parcelable {
 
     }
 
-    public static ArrayList<WeatherParcelable> getDays_weather() {
+    public static ArrayList<Weather> getDays_weather() {
         return days_weather;
     }
 
@@ -126,8 +126,8 @@ public class WeatherParcelable implements Parcelable {
         return "Maximum Temperature : " + temperatureMax +"℃";
     }
 
-    public static void setDays_weather(ArrayList<WeatherParcelable> days_weather) {
-        WeatherParcelable.days_weather = days_weather;
+    public static void setDays_weather(ArrayList<Weather> days_weather) {
+        Weather.days_weather = days_weather;
     }
 
     public void setTime(String time) {

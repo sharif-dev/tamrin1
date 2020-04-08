@@ -10,7 +10,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.weather.activities.FirstActivity;
-import com.example.weather.activities.WeatherParcelable;
 
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class APIThread extends Thread {
                 ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
                 updateFirstPage(locations);
             } else if (msg.what == 1) { // update second page ui
-                ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) msg.obj;
+                ArrayList<Weather> weathers = (ArrayList<Weather>) msg.obj;
                 updateSecondPage(weathers);
             }
 
@@ -49,7 +48,7 @@ public class APIThread extends Thread {
         });
     }
 
-    public void updateSecondPage(ArrayList<WeatherParcelable> weathers) {
+    public void updateSecondPage(ArrayList<Weather> weathers) {
         handler.post(() -> {
             FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
             FirstActivity.enterSecondPage(weathers, FirstActivity.firstPage.getActivity());
@@ -86,7 +85,7 @@ public class APIThread extends Thread {
         String url = FirstActivity.darksky_url + FirstActivity.darksky_secret_key + "/" +
                 latitude + "," + longitude;
 
-        sendRequest(result -> WeatherParcelable.processWeatherRes(result, handler), url);
+        sendRequest(result -> Weather.processWeatherRes(result, handler), url);
     }
 
     public void sendRequest(final VolleyCallback callback, String url) {

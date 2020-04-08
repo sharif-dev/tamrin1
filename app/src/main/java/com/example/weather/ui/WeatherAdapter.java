@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weather.R;
-import com.example.weather.activities.WeatherParcelable;
+import com.example.weather.api.Weather;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
-    public WeatherAdapter(Context context, ArrayList<WeatherParcelable> weathers) {
+public class WeatherAdapter extends ArrayAdapter<Weather> {
+    public WeatherAdapter(Context context, ArrayList<Weather> weathers) {
 
         super(context, 0, weathers);
     }
@@ -35,7 +35,7 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
     @Override
     public View getView(int position, @Nullable View convertView, @Nullable ViewGroup parent) {
 
-        WeatherParcelable weather = getItem(position);
+        Weather weather = getItem(position);
 
         if (convertView==null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.second_listview, parent, false);
@@ -118,7 +118,7 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
 
     @Nullable
     @Override
-    public WeatherParcelable getItem(int position) { //Todo : implement this method
+    public Weather getItem(int position) { //Todo : implement this method
         return super.getItem(position);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.weather.ui;
+package com.example.weather.pages;
 
 import android.app.Activity;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.ListView;
 import com.example.weather.R;
 import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
+import com.example.weather.ui.Loading;
+import com.example.weather.ui.LocationAdapter;
 
 import java.util.ArrayList;
 
