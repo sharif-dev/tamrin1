@@ -23,7 +23,6 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
     public WeatherAdapter(Context context, ArrayList<WeatherParcelable> weathers) {
 
         super(context, 0, weathers);
-        System.out.println("^^^()()()()())()^");
     }
 
     @Override
@@ -49,39 +48,23 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
         TextView description = convertView.findViewById(R.id.weather_icon);
         ImageView status  = convertView.findViewById(R.id.status);
 
-        //System.out.println("weather icon : "  + weather.getIcon());
-        //System.out.println("WEATHER TIME : " + weather.getTime());
-        System.out.println("???????????????" + weather.getTime());
         long time   = Integer.valueOf(weather.getTime());
         long milis = time *1000;
         Date date = new Date(milis);
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,MMMM d,yyyy h:mm,a" , Locale.ENGLISH);
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         String formattedDate = sdf.format(date);
-        //System.out.println(formattedDate);
-
-        //System.out.println("WEATHER SUNRISE  :" + weather.getSunriseTime());
-        //System.out.println("WEATHER TIME CON : " + time);
         weatherTime.setText(formattedDate);
-        minTemp.setText("Minimum Temperature : " + weather.getTemperatureMin()+"℃");
-        maxTemp.setText("Maximum Temperature : " + weather.getTemperatureMax()+"℃");
+        minTemp.setText(weather.getTemperatureMin());
+        maxTemp.setText(weather.getTemperatureMax());
         summery.setText(weather.getSummary());
         description.setText(weather.getIcon());
-
-
-
-
-
-        //System.out.println("---------------------------------------------");
-        //status.setImageResource(R.drawable.wi_tornao);
         status = setImage(weather.getIcon() , status);
-
-
         return convertView;
     }
 
 
-    public ImageView setImage(String icon , ImageView view){
+    private ImageView setImage(String icon, ImageView view){
         switch (icon){
 
             case "\"clear-day\"":
