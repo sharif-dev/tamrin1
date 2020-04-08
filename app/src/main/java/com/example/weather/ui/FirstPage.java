@@ -16,10 +16,7 @@ public class FirstPage {
     private Activity activity;
     private ArrayList<String> locationsName = new ArrayList<>();
     private ArrayList<Location> locations = new ArrayList<>();
-//    private ArrayAdapter adapter;
-
     private LocationAdapter adapter;
-    //    private StringAdapter adapter;
     private ListView listView;
 
     private ArrayList<String> strings = new ArrayList<>();
@@ -28,7 +25,6 @@ public class FirstPage {
 
     public FirstPage(Activity _activity) {
         this.activity = _activity;
-//        this.adapter = new LocationAdapter(activity, locations);
         this.adapter = new LocationAdapter(activity, locations);
         this.listView = activity.findViewById(R.id.locations_listView);
         listView.setAdapter(adapter);
@@ -57,7 +53,6 @@ public class FirstPage {
             @Override
             public void onClick(View v) {
                 APIThread apiThread = new APIThread(activity, "location");
-
                 apiThread.start();
             }
         });

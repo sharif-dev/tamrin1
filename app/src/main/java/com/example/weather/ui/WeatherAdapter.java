@@ -23,7 +23,6 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
     public WeatherAdapter(Context context, ArrayList<WeatherParcelable> weathers) {
 
         super(context, 0, weathers);
-        System.out.println("^^^()()()()())()^");
     }
 
     @Override
@@ -57,19 +56,17 @@ public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
         String formattedDate = sdf.format(date);
 
         weatherTime.setText(formattedDate);
-        minTemp.setText("Minimum Temperature : " + weather.getTemperatureMin()+"℃");
-        maxTemp.setText("Maximum Temperature : " + weather.getTemperatureMax()+"℃");
+        minTemp.setText(weather.getTemperatureMin());
+        maxTemp.setText(weather.getTemperatureMax());
         summery.setText(weather.getSummary());
         description.setText(weather.getIcon());
 
         status = setImage(weather.getIcon() , status);
-
-
         return convertView;
     }
 
 
-    public ImageView setImage(String icon , ImageView view){
+    private ImageView setImage(String icon, ImageView view){
         switch (icon){
 
             case "\"clear-day\"":
