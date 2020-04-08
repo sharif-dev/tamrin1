@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.weather.MainActivity;
+import com.example.weather.activities.FirstActivity;
 import com.example.weather.R;
 import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
@@ -49,21 +48,21 @@ public class LocationAdapter extends ArrayAdapter<Location> {
                 //todo : new page2
                 //
 
-               MainActivity.secondPage.setLatitude(location.getLatitude());
-               MainActivity.secondPage.setLongitude(location.getLongitude());
-               MainActivity.firstPage.getActivity().setContentView(R.layout.second_page);
+               FirstActivity.secondPage.setLatitude(location.getLatitude());
+               FirstActivity.secondPage.setLongitude(location.getLongitude());
+               FirstActivity.firstPage.getActivity().setContentView(R.layout.second_page);
                //todo:back button(test)
-               //Button button = MainActivity.secondPage.getSecPageActivity().findViewById(R.id.btn_back);
+               //Button button = FirstActivity.secondPage.getSecPageActivity().findViewById(R.id.btn_back);
                //button.setOnClickListener(new View.OnClickListener() {
 //                   @Override
 //                   public void onClick(View v) {
-//                       MainActivity.secondPage.getSecPageActivity().setContentView(R.layout.first_page);
-//                       FirstPage firstPage = new FirstPage(MainActivity.firstPage.getActivity());
+//                       FirstActivity.secondPage.getSecPageActivity().setContentView(R.layout.first_page);
+//                       FirstPage firstPage = new FirstPage(FirstActivity.firstPage.getActivity());
 //                       firstPage.getActivity().setContentView(R.layout.first_page);
 //                   }
 //               });
 
-                APIThread apiThread = new APIThread(MainActivity.secondPage.getSecPageActivity() , "weather");
+                APIThread apiThread = new APIThread(FirstActivity.secondPage.getSecPageActivity() , "weather");
                 apiThread.start();
 
             }

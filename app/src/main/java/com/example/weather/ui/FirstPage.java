@@ -1,22 +1,15 @@
 package com.example.weather.ui;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Handler;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.weather.MainActivity;
 import com.example.weather.R;
 import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
-import com.example.weather.ui.LocationAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FirstPage {

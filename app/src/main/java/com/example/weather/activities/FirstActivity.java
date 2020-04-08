@@ -1,15 +1,18 @@
-package com.example.weather;
+package com.example.weather.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.weather.R;
+import com.example.weather.api.Weather;
 import com.example.weather.ui.FirstPage;
 import com.example.weather.ui.SecondPage;
 //import com.example.weather.ui.StringAdapter;
 
 
-public class MainActivity extends AppCompatActivity {
+public class FirstActivity extends AppCompatActivity {
 
     public final static String darksky_url = "https://api.darksky.net/forecast/";
     public final static String darksky_secret_key = "1559cc2c241264167fdf4658dca412ca";
@@ -38,7 +41,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onSearchButtonClick(View view) {
-        firstPage.onSearchButtonClick();
+//        firstPage.onSearchButtonClick();
+
+        WeatherParcelable weather = new WeatherParcelable();
+        weather.setTime("time");
+        weather.setSummary("summary");
+        weather.setIcon("icon");
+        weather.setTemperatureMin("min temp");
+        weather.setTemperatureMax("max temp");
+
+        Intent myIntent = new Intent(getBaseContext(), SecondActivity.class);
+        myIntent.putExtra("weather", weather);
+//
+        startActivity(myIntent);
     }
 
 }
