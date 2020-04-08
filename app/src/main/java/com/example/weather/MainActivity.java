@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
             setContentView(R.layout.first_page);
             firstPage = new FirstPage(this);
-
-
-//            Loading loading = new Loading();
-//            loading.showLoading(this);
         }
         else{
             System.out.println("hello?");

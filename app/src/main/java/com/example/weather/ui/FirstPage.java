@@ -55,8 +55,6 @@ public class FirstPage {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("+++++++++is clickedddddddd");
-//                Handler handler = new Handler();
                 APIThread apiThread = new APIThread(activity, "location");
 
                 apiThread.start();

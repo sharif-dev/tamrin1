@@ -3,5 +3,6 @@
     <string name="enter_location">Enter Location …</string>
     <string name="search">Search</string>
     <string name="network_connection">Internet is not connected</string>
+    <string name="salaam">salaam</string>
 
 </resources>
