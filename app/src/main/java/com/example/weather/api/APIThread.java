@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Handler;
 
 import android.os.Message;
-import android.support.annotation.MainThread;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -97,6 +96,8 @@ public class APIThread extends Thread {
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+                FirstActivity.saveThread.setContent(result);
+                FirstActivity.saveThread.run();
                 WeatherParcelable.processWeatherRes(result, handler);
             }
         }, url);
