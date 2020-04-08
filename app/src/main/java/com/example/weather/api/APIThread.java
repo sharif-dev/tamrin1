@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 
 import android.os.Message;
+import android.support.annotation.MainThread;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +23,8 @@ public class APIThread extends Thread {
     private Handler handler;
     private RequestQueue requestQueue;
     private String dataType;
+    private String latitude;
+    private String longitude;
 
 
     public APIThread(Activity activity, String dataType) {
@@ -36,7 +39,6 @@ public class APIThread extends Thread {
                 if (msg.what == 0) { // update first page ui
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
-                    System.out.println("HERERERERERERERERERE");
 
                     FirstActivity.firstPage.updateList(locations);
 
@@ -44,17 +46,7 @@ public class APIThread extends Thread {
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
                     ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) msg.obj;
-
-                    System.out.println("2.got weatherrrrrr");
-
-                    FirstActivity.secondPage.updateWeather(weathers);
-
-                    System.out.println("3.update uiiiiiiiiii");
-
-
-                    FirstActivity.secondPage.updateUI();
-                    //FirstActivity.secondPage.updateUIT();
-                    System.out.println("!@!@!@!@!@!@!@ updte second page");
+                    FirstActivity.enterSecondPage(weathers, FirstActivity.firstPage.getActivity());
 
                 }
 
@@ -74,8 +66,7 @@ public class APIThread extends Thread {
                         getLocation(locationName);
                         break;
                     case "weather":
-                        System.out.println("1.wanna get weatherrrrrrrrr");
-                        getWeather(FirstActivity.secondPage.getLatitude() , FirstActivity.secondPage.getLongitude());
+                        getWeather(latitude , longitude);
                         break;
                 }
 //                getWeather("51.67917", "32.65139");
@@ -152,4 +143,19 @@ public class APIThread extends Thread {
         this.dataType = dataType;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }

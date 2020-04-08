@@ -1,8 +1,10 @@
 package com.example.weather.ui;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.weather.activities.FirstActivity;
 import com.example.weather.R;
+import com.example.weather.activities.SecondActivity;
 import com.example.weather.api.APIThread;
 import com.example.weather.api.Location;
 
@@ -29,6 +32,9 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         return super.getCount();
     }
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -42,27 +48,9 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("location sekevted :::::::"+location.getName());
-                System.out.println("long :" + location.getLongitude());
-                System.out.println("Lant : " + location.getLatitude());
-                //todo : new page2
-                //
-
-               FirstActivity.secondPage.setLatitude(location.getLatitude());
-               FirstActivity.secondPage.setLongitude(location.getLongitude());
-               FirstActivity.firstPage.getActivity().setContentView(R.layout.second_page);
-               //todo:back button(test)
-               //Button button = FirstActivity.secondPage.getSecPageActivity().findViewById(R.id.btn_back);
-               //button.setOnClickListener(new View.OnClickListener() {
-//                   @Override
-//                   public void onClick(View v) {
-//                       FirstActivity.secondPage.getSecPageActivity().setContentView(R.layout.first_page);
-//                       FirstPage firstPage = new FirstPage(FirstActivity.firstPage.getActivity());
-//                       firstPage.getActivity().setContentView(R.layout.first_page);
-//                   }
-//               });
-
                 APIThread apiThread = new APIThread(FirstActivity.secondPage.getSecPageActivity() , "weather");
+                apiThread.setLatitude(location.getLatitude());
+                apiThread.setLongitude(location.getLongitude());
                 apiThread.start();
 
             }

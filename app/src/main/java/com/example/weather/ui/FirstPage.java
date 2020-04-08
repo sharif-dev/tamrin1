@@ -2,6 +2,7 @@ package com.example.weather.ui;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ public class FirstPage {
         this.adapter = new LocationAdapter(activity, locations);
         this.listView = activity.findViewById(R.id.locations_listView);
         this.listView.setAdapter(adapter);
+
     }
 
 

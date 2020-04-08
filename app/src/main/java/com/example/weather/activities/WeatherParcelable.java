@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class WeatherParcelable implements Parcelable {
 
-    private static ArrayList<WeatherParcelable> days_weather;
+    private static ArrayList<WeatherParcelable> days_weather = new ArrayList<>();
 
     private String time;
     private String summary;
@@ -62,6 +62,7 @@ public class WeatherParcelable implements Parcelable {
     }
 
     public static void processWeatherRes(String response, Handler handler) {
+        System.out.println("##########response:"+response);
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
         JsonElement dailyData = jsonObject.get("daily");
@@ -84,11 +85,13 @@ public class WeatherParcelable implements Parcelable {
             weather.icon = dayWeather.getAsJsonObject().get("icon").toString();
             weather.temperatureMin = dayWeather.getAsJsonObject().get("temperatureMin").toString();
             weather.temperatureMax = dayWeather.getAsJsonObject().get("temperatureMax").toString();
+            weathers.add(weather);
 
 
         }
 
-        days_weather = weathers;
+        days_weather.clear();
+        days_weather.addAll(weathers);
 
         Message message = new Message();
         message.what = 1;
