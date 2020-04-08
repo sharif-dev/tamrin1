@@ -118,12 +118,12 @@ public class WeatherParcelable implements Parcelable {
     }
 
     public String getTemperatureMin() {
-        return temperatureMin;
+        return "Minimum Temperature : " + temperatureMin + "℃";
     }
 
 
     public String getTemperatureMax() {
-        return temperatureMax;
+        return "Maximum Temperature : " + temperatureMax +"℃";
     }
 
     public static void setDays_weather(ArrayList<WeatherParcelable> days_weather) {
