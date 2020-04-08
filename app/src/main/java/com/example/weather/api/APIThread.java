@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.activities.FirstActivity;
+import com.example.weather.activities.WeatherParcelable;
 
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class APIThread extends Thread {
 
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
-                    ArrayList<Weather> weathers = (ArrayList<Weather>) msg.obj;
+                    ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) msg.obj;
 
                     System.out.println("2.got weatherrrrrr");
 
@@ -105,7 +106,7 @@ public class APIThread extends Thread {
         sendRequest(new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                Weather.processWeatherRes(result, handler);
+                WeatherParcelable.processWeatherRes(result, handler);
             }
         }, url);
     }

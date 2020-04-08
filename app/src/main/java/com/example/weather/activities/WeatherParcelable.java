@@ -77,7 +77,7 @@ public class WeatherParcelable implements Parcelable {
 
             WeatherParcelable weather = new WeatherParcelable();
 
-//            Weather weather = new Weather();
+//            WeatherParcelable weather = new WeatherParcelable();
 //            weathers.add(weather);
             weather.time = dayWeather.getAsJsonObject().get("time").toString();
             weather.summary = dayWeather.getAsJsonObject().get("summary").toString();

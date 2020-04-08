@@ -1,7 +1,6 @@
 package com.example.weather.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,20 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weather.R;
-import com.example.weather.api.Location;
-import com.example.weather.api.Weather;
+import com.example.weather.activities.WeatherParcelable;
 
-import org.w3c.dom.Text;
-
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class WeatherAdapter extends ArrayAdapter<Weather> {
-    public WeatherAdapter(Context context, ArrayList<Weather> weathers) {
+public class WeatherAdapter extends ArrayAdapter<WeatherParcelable> {
+    public WeatherAdapter(Context context, ArrayList<WeatherParcelable> weathers) {
 
         super(context, 0, weathers);
         System.out.println("^^^()()()()())()^");
@@ -41,7 +36,7 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
     @Override
     public View getView(int position, @Nullable View convertView, @Nullable ViewGroup parent) {
 
-        Weather weather = getItem(position);
+        WeatherParcelable weather = getItem(position);
 
         if (convertView==null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.second_listview, parent, false);
@@ -56,6 +51,7 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
 
         //System.out.println("weather icon : "  + weather.getIcon());
         //System.out.println("WEATHER TIME : " + weather.getTime());
+        System.out.println("???????????????" + weather.getTime());
         long time   = Integer.valueOf(weather.getTime());
         long milis = time *1000;
         Date date = new Date(milis);
@@ -137,7 +133,7 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
 
     @Nullable
     @Override
-    public Weather getItem(int position) { //Todo : implement this method
+    public WeatherParcelable getItem(int position) { //Todo : implement this method
         return super.getItem(position);
     }
 }
