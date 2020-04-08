@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.weather.R;
+import com.example.weather.activities.FirstActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,8 +60,14 @@ public class Loading extends Fragment {
                 getFragmentManager().beginTransaction().remove(loading).commit();
             }
         }
+    }
 
+    public void endLoadingFragment() {
+        removeLoadFragment(FirstActivity.firstPage.getActivity());
+    }
 
+    public void startLoadingFragment() {
+        showLoading(FirstActivity.firstPage.getActivity());
     }
 
 

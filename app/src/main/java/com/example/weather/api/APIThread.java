@@ -41,12 +41,13 @@ public class APIThread extends Thread {
 
                     ArrayList<Location> locations = (ArrayList<Location>) msg.obj;
 
-                    FirstActivity.firstPage.getLoadFragment().removeLoadFragment(FirstActivity.firstPage.getActivity());
+                    FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
                     FirstActivity.firstPage.updateList(locations);
 
 
                 } else if (msg.what == 1) { // update second page ui
                     //update second page list
+                    FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
                     ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) msg.obj;
                     FirstActivity.enterSecondPage(weathers, FirstActivity.firstPage.getActivity());
 
@@ -67,11 +68,12 @@ public class APIThread extends Thread {
 
                         String locationName = FirstActivity.firstPage.getEditTextLocation();
 
-                        FirstActivity.firstPage.getLoadFragment().showLoading(FirstActivity.firstPage.getActivity());
-                        System.out.println("!@!@!@!@!@!@!@!"+FirstActivity.firstPage.getLoadFragment());
+                        FirstActivity.firstPage.getLoadFragment().startLoadingFragment();
+
                         getLocation(locationName);
                         break;
                     case "weather":
+                        FirstActivity.firstPage.getLoadFragment().startLoadingFragment();
                         getWeather(latitude , longitude);
                         break;
                 }
