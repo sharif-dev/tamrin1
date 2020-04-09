@@ -16,7 +16,6 @@ import com.example.weather.R;
 import com.example.weather.memory.MemoryReading;
 import com.example.weather.memory.SaveThread;
 
-
 import java.util.ArrayList;
 
 import com.example.weather.api.Weather;
@@ -47,14 +46,11 @@ public class FirstActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         secondPage = new SecondPage(this);
+        setContentView(R.layout.activity_main);
 
 
         boolean isConnected = isConnected();
         if(isConnected) {
-
-            firstPage = new FirstPage(this);
-            secondPage = new SecondPage(this);
-
 
             setContentView(R.layout.first_page);
 
