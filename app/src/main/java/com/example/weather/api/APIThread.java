@@ -3,7 +3,6 @@ package com.example.weather.api;
 import android.app.Activity;
 import android.os.Handler;
 
-import android.os.Message;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -11,6 +10,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.example.weather.R;
 import com.example.weather.activities.FirstActivity;
 
 
@@ -43,14 +43,14 @@ public class APIThread extends Thread {
         });
     }
 
-    public void updateFirstPage(ArrayList<Location> locations) {
+    private void updateFirstPage(ArrayList<Location> locations) {
         handler.post(() -> {
             FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
             FirstActivity.firstPage.updateList(locations);
         });
     }
 
-    public void updateSecondPage(ArrayList<Weather> weathers) {
+    private void updateSecondPage(ArrayList<Weather> weathers) {
         handler.post(() -> {
             FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
             FirstActivity.enterSecondPage(weathers, FirstActivity.firstPage.getActivity());
@@ -75,7 +75,7 @@ public class APIThread extends Thread {
     }
 
 
-    public void getLocation(String cityName) {
+    private void getLocation(String cityName) {
         String url = FirstActivity.mapbox_url + cityName + ".json?access" +
                 "_token=" + FirstActivity.mapbox_token;
 
@@ -83,7 +83,7 @@ public class APIThread extends Thread {
         sendRequest(result -> Location.processLocationsRes(result, handler), url);
     }
 
-    public void getWeather(String latitude, String longitude) {
+    private void getWeather(String latitude, String longitude) {
         String url = FirstActivity.darksky_url + FirstActivity.darksky_secret_key + "/" +
                 latitude + "," + longitude;
 
@@ -94,9 +94,9 @@ public class APIThread extends Thread {
         }, url);
     }
 
-    public void sendRequest(final VolleyCallback callback, String url) {
+    private void sendRequest(final VolleyCallback callback, String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                url, response -> callback.onSuccess(response), volleyError -> {
+                url, callback::onSuccess, volleyError -> {
             volleyError.printStackTrace();
             showErrorToast();
 
@@ -105,14 +105,11 @@ public class APIThread extends Thread {
         requestQueue.add(stringRequest);
     }
 
-    public void showErrorToast() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(FirstActivity.firstPage.getActivity(),
-                        "درخواست شما با خطا مواجه شد!", Toast.LENGTH_SHORT).show();
-                FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
-            }
+    private void showErrorToast() {
+        handler.post(() -> {
+            Toast.makeText(FirstActivity.firstPage.getActivity(),
+                    R.string.error_toast_message, Toast.LENGTH_SHORT).show();
+            FirstActivity.firstPage.getLoadFragment().endLoadingFragment();
         });
 
     }

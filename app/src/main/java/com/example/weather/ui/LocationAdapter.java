@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class LocationAdapter extends ArrayAdapter<Location> {
 
 
-
     public LocationAdapter(Context context, ArrayList<Location> locations) {
         super(context, 0, locations);
     }
@@ -31,7 +30,6 @@ public class LocationAdapter extends ArrayAdapter<Location> {
     public int getCount() {
         return super.getCount();
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -45,15 +43,12 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.location_item, parent, false);
         }
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                APIThread apiThread = new APIThread(FirstActivity.secondPage.getSecPageActivity() , "weather");
-                apiThread.setLatitude(location.getLatitude());
-                apiThread.setLongitude(location.getLongitude());
-                apiThread.start();
+        convertView.setOnClickListener(v -> {
+            APIThread apiThread = new APIThread(FirstActivity.secondPage.getSecPageActivity(), "weather");
+            apiThread.setLatitude(location.getLatitude());
+            apiThread.setLongitude(location.getLongitude());
+            apiThread.start();
 
-            }
         });
         TextView locationName = convertView.findViewById(R.id.location_name);
 
@@ -62,6 +57,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         return convertView;
 
     }
+
     @Nullable
     @Override
     public Location getItem(int position) { //Todo : implement this method

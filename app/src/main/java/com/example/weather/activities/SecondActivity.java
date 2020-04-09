@@ -15,9 +15,6 @@ public class SecondActivity extends AppCompatActivity {
 
     private ArrayList<Weather> weathers = new ArrayList<>();
 
-    private String latitude;
-    private String longitude;
-
     private WeatherAdapter weatherAdapter;
 
     private ListView weatherList;
@@ -27,14 +24,14 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_page);
 
-        weatherAdapter = new WeatherAdapter(this , weathers);
+        weatherAdapter = new WeatherAdapter(this, weathers);
         weatherList = findViewById(R.id.weather_listView);
         weatherList.setAdapter(weatherAdapter);
 
         getWeathersData();
     }
 
-    public void updateWeather(ArrayList<Weather> myWeathers){
+    public void updateWeather(ArrayList<Weather> myWeathers) {
         weathers.clear();
         weathers.addAll(myWeathers);
         weatherAdapter.notifyDataSetChanged();
@@ -42,26 +39,9 @@ public class SecondActivity extends AppCompatActivity {
 
     public void getWeathersData() {
         Intent intent = getIntent();
-        ArrayList<Weather> myWeathers = intent.getParcelableArrayListExtra("weathers_array");
+        ArrayList<Weather> myWeathers = intent.getParcelableArrayListExtra(String.valueOf(R.string.weathers_array));
         updateWeather(myWeathers);
 
     }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
 
 }

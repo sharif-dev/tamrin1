@@ -3,12 +3,14 @@
     <string name="enter_location">Enter Location …</string>
     <string name="search">Search</string>
     <string name="title_activity_second_page">SecondPage</string>
-    <string name="max_temp">Maximum Temperature :</string>
-    <string name="min_temp">Minimum Temperature :</string>
+    <string name="max_temp">Maximum Temperature : </string>
+    <string name="min_temp">Minimum Temperature : </string>
     <string name="time">Time :</string>
     <string name="summery">Summery :</string>
     <string name="icon">Climate :</string>
     <string name="network_connection">Network has problems!</string>
-
-
+    <string name="file_name">weather_data</string>
+    <string name="error_toast_message">درخواست شما با خطا مواجه شد!</string>
+    <string name="loading_fragment">loadingFragment</string>
+    <string name="weathers_array">weathers_array</string>
 </resources>

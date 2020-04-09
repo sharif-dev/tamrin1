@@ -37,8 +37,9 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
 
         Weather weather = getItem(position);
 
-        if (convertView==null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.second_listview, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.second_listview, parent,
+                    false);
         }
 
         TextView minTemp = convertView.findViewById(R.id.weather_min_temp);
@@ -46,12 +47,12 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
         TextView weatherTime = convertView.findViewById(R.id.weather_time);
         TextView summery = convertView.findViewById(R.id.weather_summery);
         TextView description = convertView.findViewById(R.id.weather_icon);
-        ImageView status  = convertView.findViewById(R.id.status);
+        ImageView status = convertView.findViewById(R.id.status);
 
-        long time   = Integer.valueOf(weather.getTime());
-        long milis = time *1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE,MMMM d,yyyy h:mm,a" , Locale.ENGLISH);
+        long time = Integer.valueOf(weather.getTime());
+        long millis = time * 1000;
+        Date date = new Date(millis);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE,MMMM d,yyyy h:mm,a", Locale.ENGLISH);
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         String formattedDate = sdf.format(date);
 
@@ -61,13 +62,13 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
         summery.setText(weather.getSummary());
         description.setText(weather.getIcon());
 
-        status = setImage(weather.getIcon() , status);
+        setImage(weather.getIcon(), status);
         return convertView;
     }
 
 
-    private ImageView setImage(String icon, ImageView view){
-        switch (icon){
+    private ImageView setImage(String icon, ImageView view) {
+        switch (icon) {
 
             case "\"clear-day\"":
                 view.setImageResource(R.drawable.wi_day_sunny);

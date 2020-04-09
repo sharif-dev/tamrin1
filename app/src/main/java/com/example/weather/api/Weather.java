@@ -22,12 +22,12 @@ public class Weather implements Parcelable {
     private String temperatureMin;
     private String temperatureMax;
 
-    public Weather() {
+    private Weather() {
 
     }
 
 
-    protected Weather(Parcel in) {
+    private Weather(Parcel in) {
         time = in.readString();
         summary = in.readString();
         icon = in.readString();
@@ -62,7 +62,6 @@ public class Weather implements Parcelable {
     }
 
     public static void processWeatherRes(String response, Handler handler) {
-        System.out.println("##########response:"+response);
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(response, JsonObject.class);
         JsonElement dailyData = jsonObject.get("daily");
@@ -71,15 +70,11 @@ public class Weather implements Parcelable {
 
         ArrayList<Weather> weathers = new ArrayList<>();
 
-//        Weather weather = new Weather();
-
         for (JsonElement dayWeather :
                 datas) {
 
             Weather weather = new Weather();
 
-//            Weather weather = new Weather();
-//            weathers.add(weather);
             weather.time = dayWeather.getAsJsonObject().get("time").toString();
             weather.summary = dayWeather.getAsJsonObject().get("summary").toString();
             weather.icon = dayWeather.getAsJsonObject().get("icon").toString();
@@ -101,10 +96,6 @@ public class Weather implements Parcelable {
 
     }
 
-    public static ArrayList<Weather> getDays_weather() {
-        return days_weather;
-    }
-
     public String getTime() {
         return time;
     }
@@ -123,30 +114,7 @@ public class Weather implements Parcelable {
 
 
     public String getTemperatureMax() {
-        return "Maximum Temperature : " + temperatureMax +"℃";
+        return "Maximum Temperature : " + temperatureMax + "℃";
     }
 
-    public static void setDays_weather(ArrayList<Weather> days_weather) {
-        Weather.days_weather = days_weather;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public void setTemperatureMin(String temperatureMin) {
-        this.temperatureMin = temperatureMin;
-    }
-
-    public void setTemperatureMax(String temperatureMax) {
-        this.temperatureMax = temperatureMax;
-    }
 }

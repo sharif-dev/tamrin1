@@ -16,13 +16,9 @@ import java.util.ArrayList;
 
 public class FirstPage {
     private Activity activity;
-    private ArrayList<String> locationsName = new ArrayList<>();
     private ArrayList<Location> locations = new ArrayList<>();
     private LocationAdapter adapter;
     private ListView listView;
-
-    private ArrayList<String> strings = new ArrayList<>();
-
     private Loading loadFragment;
 
     public FirstPage(Activity _activity) {
@@ -40,7 +36,6 @@ public class FirstPage {
         locations.clear();
         locations.addAll(myLocations);
 
-
         adapter.notifyDataSetChanged();
     }
 
@@ -51,12 +46,9 @@ public class FirstPage {
 
     public void onSearchButtonClick() {
         Button button = activity.findViewById(R.id.search_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                APIThread apiThread = new APIThread(activity, "location");
-                apiThread.start();
-            }
+        button.setOnClickListener(v -> {
+            APIThread apiThread = new APIThread(activity, "location");
+            apiThread.start();
         });
     }
 
@@ -65,16 +57,8 @@ public class FirstPage {
     }
 
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
     public Loading getLoadFragment() {
         return loadFragment;
-    }
-
-    public void setLoadFragment(Loading loadFragment) {
-        this.loadFragment = loadFragment;
     }
 
 }

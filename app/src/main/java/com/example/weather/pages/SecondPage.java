@@ -11,46 +11,8 @@ import java.util.ArrayList;
 
 public class SecondPage {
     private Activity secPageActivity;
-    private ArrayList<Weather> weathers = new ArrayList<>();
 
-    private String latitude;
-    private String longitude;
-
-    private WeatherAdapter weatherAdapter;
-
-    private ListView weatherList;
-
-    public SecondPage(Activity activity){
-        this.secPageActivity = activity;
-    }
-
-    public void updateWeather(ArrayList<Weather> myWheathers){
-        weathers.clear();
-        weathers.addAll(myWheathers);
-    }
-
-    public void updateUI(){
-       this.weatherAdapter = new WeatherAdapter(secPageActivity , weathers);
-       this.weatherList = secPageActivity.findViewById(R.id.weather_listView);
-       weatherList.setAdapter(weatherAdapter);
-
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
+    public SecondPage(Activity activity) { this.secPageActivity = activity; }
 
     public Activity getSecPageActivity() {
         return secPageActivity;

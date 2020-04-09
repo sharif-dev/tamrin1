@@ -4,10 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,14 +18,7 @@ import java.util.ArrayList;
 import com.example.weather.api.Weather;
 import com.example.weather.ui.CustomToast;
 import com.example.weather.pages.FirstPage;
-
-import com.example.weather.R;
 import com.example.weather.pages.SecondPage;
-
-import java.util.ArrayList;
-
-//import com.example.weather.ui.StringAdapter;
-
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -41,6 +31,7 @@ public class FirstActivity extends AppCompatActivity {
     public static SecondPage secondPage;
 
     public static SaveThread saveThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,26 +41,28 @@ public class FirstActivity extends AppCompatActivity {
 
 
         boolean isConnected = isConnected();
-        if(isConnected) {
 
-            setContentView(R.layout.first_page);
-
-            saveThread = new SaveThread(getApplicationContext());
-
-            firstPage = new FirstPage(this);
-        }
-        else{
-            System.out.println("hello?");
+        if(!isConnected){
             CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
             MemoryReading memoryReading = new MemoryReading(getApplicationContext());
-            System.out.println("made it");
             memoryReading.start();
         }
 
     }
 
+    protected void onResume(){
+        super.onResume();
+        boolean isConnected = isConnected();
+        if (isConnected) {
+
+            setContentView(R.layout.first_page);
+            saveThread = new SaveThread(getApplicationContext());
+            firstPage = new FirstPage(this);
+        }
+    }
+
     private boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
@@ -81,10 +74,9 @@ public class FirstActivity extends AppCompatActivity {
 
     public static void enterSecondPage(ArrayList<Weather> myWeathers, Activity activity) {
         Intent intent = new Intent(activity, SecondActivity.class);
-        intent.putParcelableArrayListExtra("weathers_array", myWeathers);
+        intent.putParcelableArrayListExtra(String.valueOf(R.string.weathers_array), myWeathers);
         activity.startActivity(intent);
     }
-
 
 
 }
