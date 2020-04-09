@@ -36,28 +36,22 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        secondPage = new SecondPage(this);
-        setContentView(R.layout.activity_main);
-
-
-        boolean isConnected = isConnected();
-
-        if(!isConnected){
-            CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
-            MemoryReading memoryReading = new MemoryReading(getApplicationContext());
-            memoryReading.start();
-        }
-
+        setContentView(R.layout.first_page);
     }
 
     protected void onResume(){
         super.onResume();
         boolean isConnected = isConnected();
+        secondPage = new SecondPage(this);
         if (isConnected) {
 
             setContentView(R.layout.first_page);
             saveThread = new SaveThread(getApplicationContext());
             firstPage = new FirstPage(this);
+        }else{
+            CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
+            MemoryReading memoryReading = new MemoryReading(getApplicationContext());
+            memoryReading.start();
         }
     }
 
