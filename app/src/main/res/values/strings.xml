@@ -8,5 +8,7 @@
     <string name="time">Time :</string>
     <string name="summery">Summery :</string>
     <string name="icon">Climate :</string>
+    <string name="network_connection">Network has problems!</string>
+
 
 </resources>

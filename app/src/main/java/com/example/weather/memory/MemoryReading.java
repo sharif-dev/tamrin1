@@ -6,7 +6,7 @@ import android.os.Message;
 import android.os.Handler;
 
 import com.example.weather.activities.FirstActivity;
-import com.example.weather.activities.WeatherParcelable;
+import com.example.weather.api.Weather;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,7 +25,7 @@ public class MemoryReading extends Thread{
             @Override
             public boolean handleMessage(Message message) {
                 if(message.what == 1){
-                    ArrayList<WeatherParcelable> weathers = (ArrayList<WeatherParcelable>) message.obj;
+                    ArrayList<Weather> weathers = (ArrayList<Weather>) message.obj;
                     FirstActivity.enterSecondPage(weathers, FirstActivity.secondPage.getSecPageActivity());
                 }
                 return true;
@@ -48,7 +48,7 @@ public class MemoryReading extends Thread{
                     while((i = fileReader.read()) != -1){
                         result.append((char) i);
                     }
-                    WeatherParcelable.processWeatherRes(result.toString(), handler);
+                    Weather.processWeatherRes(result.toString(), handler);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

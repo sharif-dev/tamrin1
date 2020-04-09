@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/cardview_default_radius"
+    android:layout_marginBottom="@dimen/cardview_default_radius"
+    >
 
 
     <LinearLayout
@@ -35,7 +38,7 @@
         android:layout_toEndOf="@+id/list_icon"
         android:layout_toRightOf="@+id/list_icon"
         android:paddingBottom="10dip"
-        android:textColor="#040404"
+        android:textColor="@color/almost_black"
         android:textSize="17dp"
         android:textStyle="bold" />
 

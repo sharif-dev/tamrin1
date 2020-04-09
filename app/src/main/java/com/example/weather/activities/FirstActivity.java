@@ -1,5 +1,8 @@
 package com.example.weather.activities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +15,19 @@ import android.view.View;
 import com.example.weather.R;
 import com.example.weather.memory.MemoryReading;
 import com.example.weather.memory.SaveThread;
-import com.example.weather.ui.FirstPage;
-import com.example.weather.ui.SecondPage;
+
 
 import java.util.ArrayList;
+
+import com.example.weather.api.Weather;
+import com.example.weather.ui.CustomToast;
+import com.example.weather.pages.FirstPage;
+
+import com.example.weather.R;
+import com.example.weather.pages.SecondPage;
+
+import java.util.ArrayList;
+
 //import com.example.weather.ui.StringAdapter;
 
 
@@ -38,49 +50,45 @@ public class FirstActivity extends AppCompatActivity {
 
 
         boolean isConnected = isConnected();
-        System.out.println(isConnected);
         if(isConnected) {
+
+            firstPage = new FirstPage(this);
+            secondPage = new SecondPage(this);
+
+
             setContentView(R.layout.first_page);
 
             saveThread = new SaveThread(getApplicationContext());
 
-
             firstPage = new FirstPage(this);
         }
-
-        else {
+        else{
+            System.out.println("hello?");
+            CustomToast customToast = new CustomToast(getApplicationContext(), R.string.network_connection);
             MemoryReading memoryReading = new MemoryReading(getApplicationContext());
             System.out.println("made it");
             memoryReading.start();
         }
 
-//        Handler handler = new Handler();
-//        APIThread apiThread = new APIThread(this, "location");
-//
-//        apiThread.start();
-
-
     }
-
-
-
-    public void onSearchButtonClick(View view) {
-        firstPage.onSearchButtonClick();
-    }
-
-    public static void enterSecondPage(ArrayList<WeatherParcelable> myWeathers, Activity activity) {
-        Intent intent = new Intent(activity, SecondActivity.class);
-        intent.putParcelableArrayListExtra("weathers_array", myWeathers);
-        activity.startActivity(intent);
-    }
-
-
 
     private boolean isConnected() {
         ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
+
+
+    public void onSearchButtonClick(View view) {
+        firstPage.onSearchButtonClick();
+    }
+
+    public static void enterSecondPage(ArrayList<Weather> myWeathers, Activity activity) {
+        Intent intent = new Intent(activity, SecondActivity.class);
+        intent.putParcelableArrayListExtra("weathers_array", myWeathers);
+        activity.startActivity(intent);
+    }
+
 
 
 }
